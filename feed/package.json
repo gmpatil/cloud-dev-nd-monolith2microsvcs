@@ -1,7 +1,10 @@
 {
-  "name": "udacity-c2-restapi",
+  "name": "udgm-api-feed",
   "version": "1.0.0",
-  "description": "",
+  "description": "REST API for Image Feeds",
+  "repository": {
+    "url": "https://github.com/gmpatil/cloud-dev-nd-monolith2microsvcs"
+  },
   "main": "src/server.js",
   "scripts": {
     "start": "node .",

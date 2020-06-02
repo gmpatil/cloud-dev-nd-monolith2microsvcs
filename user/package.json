@@ -1,7 +1,10 @@
 {
-  "name": "udacity-c2-restapi",
+  "name": "udgm-api-user",
   "version": "1.0.0",
-  "description": "",
+  "description": "REST API for user authentication",
+  "repository": {
+    "url": "https://github.com/gmpatil/cloud-dev-nd-monolith2microsvcs"
+  },
   "main": "src/server.js",
   "scripts": {
     "start": "node .",
