@@ -3,16 +3,16 @@ services:
   reverseproxy:
     build:
       context: .
-    image: scheele/reverseproxy 
+    image: gmpatil/udgm-reverseproxy 
   backend_user:
     build:
-      context: ../../udacity-c3-restapi-user
-    image: scheele/udacity-restapi-user
+      context: ../../user
+    image: gmpatil/udgm-api-user
   backend_feed:
     build:
-      context: ../../udacity-c3-restapi-feed  
-    image: scheele/udacity-restapi-feed
+      context: ../../feed  
+    image: gmpatil/udgm-api-feed
   frontend:
     build:
-      context: ../../udacity-c3-frontend  
-    image: scheele/udacity-frontend:local
+      context: ../../frontend  
+    image: gmpatil/udgm-frontend:local
