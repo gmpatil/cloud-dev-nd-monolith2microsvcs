@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "90c44738-86d0-440c-ac60-dcb7b70fb9e8",
+		"_postman_id": "dd2ea5a6-e9d1-4475-9ec5-2e798bf28507",
 		"name": "udacity-c2-restapi",
 		"description": "Requests that should work!",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -15,7 +15,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "1ad01629-c164-41ef-9d19-0a5fd13274af",
+								"id": "7d99d95e-f631-4079-91b7-52829d597340",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -37,10 +37,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{host}}/api/v0/feed",
 							"host": [
@@ -62,7 +58,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "1ad01629-c164-41ef-9d19-0a5fd13274af",
+								"id": "ea73f8b7-cce4-4965-843e-ca87c5cecb05",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -84,10 +80,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{host}}/api/v0/feed/:id",
 							"host": [
@@ -121,10 +113,6 @@
 							"originalRequest": {
 								"method": "GET",
 								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
 								"url": {
 									"raw": "{{host}}/api/v0/feed/:id",
 									"host": [
@@ -191,7 +179,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "4fa0ec55-4fb1-4eda-a7a3-08af62324ede",
+								"id": "b5eafdf6-f794-497c-bbb7-eec251dc2da9",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -245,7 +233,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "b3737edc-f79e-4823-b2c5-e84e6359e173",
+								"id": "d704b690-f7e5-49ab-8d65-cfbc6d5b468b",
 								"exec": [
 									"pm.test(\"Status code is 400\", function () {",
 									"    pm.response.to.have.status(400);",
@@ -300,7 +288,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "5524b249-cd4d-4e75-91c4-b2f690d53d44",
+								"id": "6d2900ac-2ead-4193-839d-000889cf5288",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -359,7 +347,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "41cd51df-9472-4d8d-9177-b4f54d6a8530",
+								"id": "dfb39f4c-567d-4258-8150-5e14bf62a544",
 								"exec": [
 									"pm.test(\"Status code is 400\", function () {",
 									"    pm.response.to.have.status(400);",
@@ -409,7 +397,8 @@
 					},
 					"response": []
 				}
-			]
+			],
+			"protocolProfileBehavior": {}
 		},
 		{
 			"name": "Unauthorized",
@@ -420,7 +409,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "1ad01629-c164-41ef-9d19-0a5fd13274af",
+								"id": "fb528115-751b-4ddb-8b86-229b73fd5cdf",
 								"exec": [
 									"pm.test(\"Status code is 401\", function () {",
 									"    pm.response.to.have.status(401);",
@@ -439,7 +428,12 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": ""
+							"raw": "{\n    \"caption\": \"The Lion\",\n    \"url\": \"Lionel.jpg\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
 						},
 						"url": {
 							"raw": "{{host}}/api/v0/feed",
@@ -456,18 +450,113 @@
 					},
 					"response": []
 				}
-			]
+			],
+			"protocolProfileBehavior": {}
 		},
 		{
 			"name": "Authorized",
 			"item": [
+				{
+					"name": "Get Signed URL for PUT - /api/v0/feed/signed-url/:fileName",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "fe945ba8-5e38-44e8-8303-bdcebf3b611e",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"pm.test(\"The post returns a new item with an url\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.url).to.not.eql(null);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"SignedURLForFilePut1\", jsonData.url);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/v0/feed/signed-url/:fileName",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v0",
+								"feed",
+								"signed-url",
+								":fileName"
+							],
+							"variable": [
+								{
+									"key": "fileName",
+									"value": "tigger.jpg"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT resource in to S3 using signed URL",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "94d09617-c3d1-4c99-aeff-a11dc92a4b7a",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 700ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(700);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "file",
+							"file": {
+								"src": "tigger.jpg"
+							}
+						},
+						"url": {
+							"raw": "{{SignedURLForFilePut1}}",
+							"host": [
+								"{{SignedURLForFilePut1}}"
+							]
+						}
+					},
+					"response": []
+				},
 				{
 					"name": "/api/v0/feed invalid",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
-								"id": "1ad01629-c164-41ef-9d19-0a5fd13274af",
+								"id": "2d3e2378-7fe0-40e6-a219-42b5ec9692c8",
 								"exec": [
 									"pm.test(\"Status code is 400\", function () {",
 									"    pm.response.to.have.status(400);",
@@ -516,12 +605,12 @@
 					"response": []
 				},
 				{
-					"name": "/api/v0/feed authorized Copy",
+					"name": "Get Signed URL for GET  - /api/v0/feed authorized",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
-								"id": "1ad01629-c164-41ef-9d19-0a5fd13274af",
+								"id": "82db1ac3-1f9c-4924-a206-97a74662d362",
 								"exec": [
 									"pm.test(\"Status code is 201\", function () {",
 									"    pm.response.to.have.status(201);",
@@ -534,7 +623,10 @@
 									"",
 									"pm.test(\"Response time is less than 200ms\", function () {",
 									"    pm.expect(pm.response.responseTime).to.be.below(200);",
-									"});"
+									"});",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"SignedURLForFileGet1\", jsonData.url);"
 								],
 								"type": "text/javascript"
 							}
@@ -552,7 +644,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"caption\": \"Hello\",\n    \"url\": \"test.jpg\"\n}"
+							"raw": "{\n    \"caption\": \"Tigger Tiger\",\n    \"url\": \"tigger.jpg\"\n}"
 						},
 						"url": {
 							"raw": "{{host}}/api/v0/feed",
@@ -566,6 +658,62 @@
 							]
 						},
 						"description": "Post a new item to the feed"
+					},
+					"response": []
+				},
+				{
+					"name": "GET S3 Resource Using Signed URL",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5e9e78e8-5434-499a-a3bb-8b318151f01b",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"The post returns content type image/jpg\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql('image/jpeg');",
+									"    pm.expect(pm.response.headers.get(\"Content-Length\")).to.eql('62322');",
+									"});",
+									"",
+									"pm.test(\"The post returns content length 62kb\", function () {",
+									"    pm.expect(pm.response.headers.get(\"Content-Length\")).to.eql('62322');",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response time is less than 400ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(400);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "file",
+							"file": {
+								"src": ""
+							}
+						},
+						"url": {
+							"raw": "{{SignedURLForFileGet1}}",
+							"host": [
+								"{{SignedURLForFileGet1}}"
+							]
+						},
+						"description": "Get Image file using signed URL"
 					},
 					"response": []
 				}
@@ -584,7 +732,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "65e7c108-0985-4ca7-9613-0898f005cf76",
+						"id": "2dba80f7-ee3d-4ffb-852f-d8d1e0846bc6",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -594,21 +742,22 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "cf28f76e-ffbb-4199-b636-1c080a86e465",
+						"id": "2d98af7d-7d13-469a-928f-12eb3a8c0aa7",
 						"type": "text/javascript",
 						"exec": [
 							""
 						]
 					}
 				}
-			]
+			],
+			"protocolProfileBehavior": {}
 		}
 	],
 	"event": [
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "bc5d9c7a-7a6b-49ed-af16-206e17e8732f",
+				"id": "3b8729cb-ebb4-4ee4-814a-be4853578b1f",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -618,7 +767,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "a7cb0174-2461-42e2-979e-1b5922eea0fe",
+				"id": "39af8777-86de-4bb9-b805-6d03b4c26ad4",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -633,5 +782,6 @@
 			"value": "http://localhost:8080",
 			"type": "string"
 		}
-	]
+	],
+	"protocolProfileBehavior": {}
 }
