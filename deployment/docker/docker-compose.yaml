@@ -11,29 +11,28 @@ services:
   backend-user:
     image: gmpatil/udgm-api-user
     environment:
-      POSTGRESS_USERNAME: $POSTGRESS_USERNAME
-      POSTGRESS_PASSWORD: $POSTGRESS_PASSWORD 
-      POSTGRESS_DB: $POSTGRESS_DB 
-      POSTGRESS_HOST: $POSTGRESS_HOST 
-      AWS_REGION: $AWS_REGION 
-      AWS_PROFILE: $AWS_PROFILE 
-      AWS_BUCKET: $AWS_BUCKET
+      DB_USERNAME: $DB_USERNAME
+      DB_PASSWORD: $DB_PASSWORD
+      DB_NAME: $DB_NAME
+      DB_HOST: $DB_HOST
+      DB_DIALECT: $DB_DIALECT
       JWT_SECRET: $JWT_SECRET
-      URL: "http://localhost:8100"
+      FE_URL: "http://localhost:8100"
   backend-feed:
     image: gmpatil/udgm-api-feed
     volumes:
       - $HOME/.aws:/root/.aws
     environment:
-      POSTGRESS_USERNAME: $POSTGRESS_USERNAME
-      POSTGRESS_PASSWORD: $POSTGRESS_PASSWORD 
-      POSTGRESS_DB: $POSTGRESS_DB 
-      POSTGRESS_HOST: $POSTGRESS_HOST 
-      AWS_REGION: $AWS_REGION 
-      AWS_PROFILE: $AWS_PROFILE 
-      AWS_BUCKET: $AWS_BUCKET
+      DB_USERNAME: $DB_USERNAME
+      DB_PASSWORD: $DB_PASSWORD
+      DB_NAME: $DB_NAME
+      DB_HOST: $DB_HOST
+      DB_DIALECT: $DB_DIALECT
+      aws_region: $aws_region
+      aws_profile: $aws_profile
+      aws_s3_bucket: $aws_s3_bucket
       JWT_SECRET: $JWT_SECRET
-      URL: "http://localhost:8100"
+      FE_URL: "http://localhost:8100"
   frontend:
     image: gmpatil/udgm-frontend:local
     ports:

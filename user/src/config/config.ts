@@ -3,7 +3,7 @@ export const config = {
     "aws_region": process.env.aws_region,
     "aws_profile": process.env.aws_profile,
     "aws_media_bucket": process.env.aws_s3_bucket,
-    "url": process.env.URL
+    "url": process.env.FE_URL
   },
   "rdbms": {
     "username": process.env.DB_USERNAME,
