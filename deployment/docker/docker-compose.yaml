@@ -21,6 +21,7 @@ services:
   backend-feed:
     image: gmpatil/udgm-api-feed
     volumes:
+      # $HOME/.aws resolves to ~/snap/docker/443/.aws 
       - $HOME/.aws:/root/.aws
     environment:
       DB_USERNAME: $DB_USERNAME
