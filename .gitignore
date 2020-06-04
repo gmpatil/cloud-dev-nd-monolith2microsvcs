@@ -1,3 +1,6 @@
-**/aws-secret.yaml
-**/env-secret.yaml
-**/env-configmap.yaml
+*/**/aws-secret.yaml
+*/**/env-secret.yaml
+*/**/env-configmap.yaml
+deployment/k8s/aws-secret.yaml
+deployment/k8s/env-secret.yaml
+deployment/k8s/env-configmap.yaml
