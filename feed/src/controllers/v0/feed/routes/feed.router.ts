@@ -39,20 +39,45 @@ router.get('/', async (req: Request, res: Response) => {
     res.send(items);
 });
 
-// Get a specific resource
-router.get('/:id', 
+//Add an endpoint to GET a specific resource by Primary Key
+router.get('/:id',
+    requireAuth,
     async (req: Request, res: Response) => {
-    let { id } = req.params;
-    const item = await FeedItem.findByPk(id);
-    res.send(item);
-});
+        const {id} = req.params;
+        const item = await FeedItem.findByPk(id);
+        if (item) {
+            res.status(200).send(JSON.stringify(item));
+        } else {
+            res.status(400).send(`Key ${id} not found.`);
+        }
+    });
 
 // update a specific resource
 router.patch('/:id', 
     requireAuth, 
     async (req: Request, res: Response) => {
-        //@TODO try it yourself
-        res.send(500).send("not implemented")
+        const {id} = req.params;
+        const caption = req.body.caption;
+        const url = req.body.url;
+
+        if (!caption && !url) {
+            res.status(500).send("Value for field caption or url is required.")
+        } else {
+            let ret = [];
+            if (!caption) {
+                ret = await FeedItem.update({url: url}, {where:{id: id}});
+            } else if (!url) {
+                ret = await FeedItem.update({caption: caption}, {where:{id: id}});
+            } else {
+                ret = await FeedItem.update({url: url, caption: caption}, {where:{id: id}});
+            }
+
+            if (ret[0] > 0) {
+                res.status(200).send("{ret[0]}");
+            } else {
+                res.status(400).send("No rows updated.");
+            }
+        }
 });
 
 
