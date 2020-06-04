@@ -5,6 +5,9 @@ metadata:
     service: reverseproxy
   name: reverseproxy
 spec:
+  selector:
+    matchLabels:
+      service: reverseproxy  
   replicas: 1
   template:
     metadata:
