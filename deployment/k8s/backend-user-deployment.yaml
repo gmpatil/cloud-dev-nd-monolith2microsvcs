@@ -33,18 +33,23 @@ spec:
               key: FE_URL 
         - name: JWT_SECRET
           valueFrom:
-            configMapKeyRef:
-              name: env-config
+            secretKeyRef:
+              name: env-secret
               key: JWT_SECRET
-        - name: DB_NAME
+        - name: DB_DIALECT
           valueFrom:
             configMapKeyRef:
               name: env-config
+              key: DB_DIALECT               
+        - name: DB_NAME
+          valueFrom:
+            secretKeyRef:
+              name: env-secret
               key: DB_NAME
         - name: DB_HOST
           valueFrom:
-            configMapKeyRef:
-              name: env-config
+            secretKeyRef:
+              name: env-secret
               key: DB_HOST
         - name: DB_PASSWORD
           valueFrom:
