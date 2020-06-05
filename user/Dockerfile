@@ -9,6 +9,6 @@ RUN npm ci
 # Bundle app source
 COPY . .
 # Build
-RUN npm build
+RUN npm run build
 EXPOSE 8080
 CMD [ "node", "./www/server.js" ]
