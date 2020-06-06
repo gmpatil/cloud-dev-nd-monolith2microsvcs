@@ -6,8 +6,8 @@ metadata:
   name: frontend
 spec:
   ports:
-  - name: "8100"
-    port: 8100
+  - name: "80"
+    port: 80
     targetPort: 80
   selector:
     service: frontend

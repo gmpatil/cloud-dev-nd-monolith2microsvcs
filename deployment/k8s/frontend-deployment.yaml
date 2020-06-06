@@ -13,7 +13,6 @@ spec:
     metadata:
       labels:
         service: frontend
-        api: external        
     spec:
       containers:
       - image: gmpatil/udgm-frontend:local
