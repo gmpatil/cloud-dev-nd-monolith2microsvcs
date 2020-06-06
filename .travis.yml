@@ -39,9 +39,10 @@ after_success:
   - echo "[default]" >> ~/.aws/config
   - echo "region = ${aws_region}" >> ~/.aws/config
   - aws eks --region ${aws_region2} update-kubeconfig --name gmp_eks_cluster
-  - kubectl get svc
+#  - kubectl get svc
 # Deploy to AWS/EKS Kubernetes cluster.  
   - kubectl apply -f ./deployment/k8s/backend-user-deployment.yaml
   - kubectl apply -f ./deployment/k8s/backend-feed-deployment.yaml
   - kubectl apply -f ./deployment/k8s/frontend-deployment.yaml
   - sudo rm -rf ~/.aws
+  - sudo rm -rf ~/.kube
